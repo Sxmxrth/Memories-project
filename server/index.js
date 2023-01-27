@@ -2,12 +2,15 @@ import express from "express"
 import bodyParser from "body-parser"
 import mongoose from "mongoose"
 import cors from "cors"
+import postRoutes from "./routes/posts"
 
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors())
+
+app.use("/posts", postRoutes)   //Every route in the postRoute is going to start from localhost:5000/posts
 
 const CONNECTION_URL = "mongodb+srv://samarth:samarth123@memories-project.51tfjmr.mongodb.net/?retryWrites=true&w=majority" //this is to connect to the cluster
 
